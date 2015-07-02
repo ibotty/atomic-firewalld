@@ -12,7 +12,7 @@ Description=FirewallD running in ${NAME}
 After=docker.service
 
 [Service]
-ExecStart=/usr/bin/docker run -d --rm --privileged --net=host -v /lib/modules:/lib/modules:ro -v /etc/firewalld: /etc/firewalld --name ${NAME} --entrypoint /sbin/firewalld --no-fork
+ExecStart=/usr/bin/docker run -d --rm --privileged --net=host -v /lib/modules:/lib/modules:ro -v /etc/firewalld:/etc/firewalld --name ${NAME} --entrypoint /sbin/firewalld --no-fork
 ExecReload=/usr/bin/docker exec -t ${NAME} /bin/sh -c '/bin/kill -HUP \$(cat /run/firewalld.pid)'
 
 [Install]
